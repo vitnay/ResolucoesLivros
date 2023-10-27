@@ -50,7 +50,7 @@ Status / Dificuldade | Livro | Capítulo Atual | Colaborador(es)|
 :watch::sun_behind_small_cloud:|THOMAS, David. **O Programador Pragmático: de aprendiz a mestre**.|?|
 :watch::sun_behind_rain_cloud:| SUDARSHAN, S.; SILBERSCHATZ, Abraham; KORTH, F. Henry. **Sistemas de Banco de Dados** | ? |
 :watch::sun_behind_small_cloud:|MARTIN, Robert C. et al. **Código limpo: habilidades práticas do Agile software** | ? |
-
+:zzz::sunny:| VILLAR, André Luiz; EBERSPACHER, Henri. **Lógica de Programação: A construção de algoritmos e estruturas de dados**.|3 de?| @joao00001
 ### Próximos Livros
 
 Caso queira que algum livro entre nessa lista, abra uma issue solicitando a avaliação da resolução do livro ou então coloque você mesmo nesta lista.
