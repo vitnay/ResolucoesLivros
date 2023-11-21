@@ -1,0 +1,45 @@
+//Lógica de Programação, 3ª edição - André Luiz Villar Forbellone; Henri Frederico Eberspacher
+//Capítulo 2 - Tópicos Preliminares
+//Exercícios 1 a 3
+//Acesse nossa página de resolução dos exercícios: https://exata0mente.com.br/
+
+
+Exercício 1. Determine qual é o tipo primitivo de informação presente nas sentenças a seguir:
+          a) A placa "Pare!" tinha dois furos de bala.   // 
+          b) Josefina subiu 5 degraus para pegar uma maçã boa.
+          c) Alberta levou 3,5 horas para chegar ao hospital onde concebeu uma garota.
+          d) Astrogilda pintou sua camisa: "Preserve o meio ambiente", e ficou devendo $109,59 ao vendedor de tintas.
+          e) Felisberto recebeu sua 18ª medalha por ter alcançado a marca de 57,3 segundos nos 100 metros rasos.
+
+Exercício 2.1. Assinale os identificadores válidos:
+          a) (X)
+          b) U2
+          c) AH!
+          d) "ALUNO"
+          e) #55
+          f) KM/L
+          g) UYT
+          h) ASDRUBAL
+          i) AB*C
+          j) 0&0
+          l) P{O}
+          m) B52
+          n) Rua
+          o) CEP
+          p) dia/mês
+
+Exercício 2.2. Supondo que as variáveis NB, NA, NMat, SX sejam utilizadas para armazenar a nota do aluno, o nome do aluno, o número da matrícula e o sexo, declare-as corretamente, associando o tipo primitivo adequado ao dado que será armazenado.
+
+Exercício 2.3. Encontre os erros das seguintes declarações de variáveis:
+inteiro: Endereço, NFilhos;
+caracter: Idade, X;
+real: XPTO, C, Peso, R$;
+lógico: lâmpada, C;
+
+Exercício 3. Supondo que A, B e C são variáveis de tipo inteiro, com valores iguais a 5, 10 e -8, respectivamente, e uma variável real D, com valor de 1,5, quais os resultados das expressões aritméticas a seguir?
+          a) 2* A mod 3 - C
+          b) rad(-2 * C) div 4
+          c) ((20 div 3) div 3) + pot (8,2)/2
+          d) (30 mod 4 * pot (3,3)) * -1
+          e) pot(-C,2) + (D * 10) / A
+          f) rad(pot(A,B/A)) + C * D
