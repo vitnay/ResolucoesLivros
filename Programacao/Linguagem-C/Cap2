@@ -1,15 +1,15 @@
 //Lógica de Programação, 3ª edição - André Luiz Villar Forbellone; Henri Frederico Eberspacher
 //Capítulo 2 - Tópicos Preliminares
 //Exercícios 1 a 3
-//Acesse nossa página de resolução dos exercícios: https://exata0mente.com.br/
+//Acesse nossa página de resolução dos exercícios: https://github.com/vitnay/ResolucoesLivros/edit/patch-2/Programacao/Linguagem-C/Cap2
 
 
 Exercício 1. Determine qual é o tipo primitivo de informação presente nas sentenças a seguir:
-          a) A placa "Pare!" tinha dois furos de bala.   // 
-          b) Josefina subiu 5 degraus para pegar uma maçã boa.
-          c) Alberta levou 3,5 horas para chegar ao hospital onde concebeu uma garota.
-          d) Astrogilda pintou sua camisa: "Preserve o meio ambiente", e ficou devendo $109,59 ao vendedor de tintas.
-          e) Felisberto recebeu sua 18ª medalha por ter alcançado a marca de 57,3 segundos nos 100 metros rasos.
+          a) A placa "Pare!" tinha dois furos de bala.   // RESPOSTA: "Pare!" caracter e (2) inteiro.
+          b) Josefina subiu 5 degraus para pegar uma maçã boa.  // RESPOSTA: (boa) lógico e (5) inteiro.
+          c) Alberta levou 3,5 horas para chegar ao hospital onde concebeu uma garota. // RESPOSTA: (3,5) real e (garota) lógico.
+          d) Astrogilda pintou sua camisa: "Preserve o meio ambiente", e ficou devendo $109,59 ao vendedor de tintas.  // RESPOSTA: ("preserve o meio ambiente") caracter e ($109,59) real.
+          e) Felisberto recebeu sua 18ª medalha por ter alcançado a marca de 57,3 segundos nos 100 metros rasos.  // RESPOSTA: (18ª) inteiro, (57,3) real e (100) inteiro.
 
 Exercício 2.1. Assinale os identificadores válidos:
           a) (X)
