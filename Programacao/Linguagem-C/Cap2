@@ -1,8 +1,13 @@
 //Lógica de Programação, 3ª edição - André Luiz Villar Forbellone; Henri Frederico Eberspacher
 //Capítulo 2 - Tópicos Preliminares
 //Exercícios 1 a 3
+//Capítulo 4 - Estruturas de Dados 
+//Exercícios 1 a 16
 //Acesse nossa página de resolução dos exercícios: https://github.com/vitnay/ResolucoesLivros/edit/patch-2/Programacao/Linguagem-C/Cap2
+                                                  https://github.com/exata0mente/ResolucoesLivros/pull/4/files#diff-e60596af057fa782cc3f445330b0ae11a8822cec783006cf13f710bb59e14184
 
+
+////CAPÍTULO 2
 
 Exercício 1. Determine qual é o tipo primitivo de informação presente nas sentenças a seguir:
           a) A placa "Pare!" tinha dois furos de bala.   // RESPOSTA: "Pare!" caracter e (2) inteiro.
@@ -13,33 +18,1706 @@ Exercício 1. Determine qual é o tipo primitivo de informação presente nas se
 
 Exercício 2.1. Assinale os identificadores válidos:
           a) (X)
-          b) U2
+          b) U2  //
           c) AH!
           d) "ALUNO"
           e) #55
           f) KM/L
-          g) UYT
-          h) ASDRUBAL
+          g) UYT   //
+          h) ASDRUBAL   //
           i) AB*C
           j) 0&0
           l) P{O}
-          m) B52
-          n) Rua
-          o) CEP
+          m) B52   //
+          n) Rua   //
+          o) CEP   //
           p) dia/mês
 
 Exercício 2.2. Supondo que as variáveis NB, NA, NMat, SX sejam utilizadas para armazenar a nota do aluno, o nome do aluno, o número da matrícula e o sexo, declare-as corretamente, associando o tipo primitivo adequado ao dado que será armazenado.
 
-Exercício 2.3. Encontre os erros das seguintes declarações de variáveis:
+// RESPOSTA: NB (NOTA DO ALUNO): REAL
+             NA (NOME DO ALUNO): CARACTER
+             NMat (NÚMERO DE MATRÍCULA): INTEIRO
+             SX (SEXO): LÓGICO
+
+Exercício 2.3. Encontre os erros das seguintes declarações de variáveis: 
 inteiro: Endereço, NFilhos;
 caracter: Idade, X;
 real: XPTO, C, Peso, R$;
 lógico: lâmpada, C;
 
+// RESPOSTA: O IDENTIFICADOR "R$" É INVÁLIDO E A VARIÁVEL C ESTÁ DECLARADA DUAS VEZES.
+
 Exercício 3. Supondo que A, B e C são variáveis de tipo inteiro, com valores iguais a 5, 10 e -8, respectivamente, e uma variável real D, com valor de 1,5, quais os resultados das expressões aritméticas a seguir?
-          a) 2* A mod 3 - C
-          b) rad(-2 * C) div 4
-          c) ((20 div 3) div 3) + pot (8,2)/2
-          d) (30 mod 4 * pot (3,3)) * -1
-          e) pot(-C,2) + (D * 10) / A
-          f) rad(pot(A,B/A)) + C * D
+          a) 2* A mod 3 - C /// RESPOSTA:   ((2 * 5) mod 3) - (-8) = (10 mod 3) -(-8) = 1+8 = 9 // O mod significa o resto da divisão, neste caso 10 dividido por 3 tem resto 1.                  
+          b) rad(-2 * C) div 4 // RESPOSTA: rad((-2 * (-8)) div 4 = rad(16) div 4 = 4 div 4 = 1
+          c) ((20 div 3) div 3) + pot (8,2)/2 // RESPOSTA: (6,6 div 3) + pot (8,2)/2 = 2,22 + (64/2) = 2,22 + 32 = 34,22
+          d) (30 mod 4 * pot (3,3)) * -1 // RESPOSTA: O resto da divisão de 30 por 4 é 2, logo a resolução fica: ( 2 * 27) * (-1) = 54 * (-1) = -54
+          e) pot(-C,2) + (D * 10) / A // RESPOSTA: pot(-(-8,2)) + (1,5 * 10) / 5 = (64) + 15/5 = 64 + 3 = 67
+          f) rad(pot(A,B/A)) + C * D  // RESPOSTA: rad(pot(5,10/5)) + (-8) * 1,5 = rad(pot(5,2)) + (-8) * 1,5 = rad(25) + (-8) * 1,5 =  5 + (-8) * 1,5 
+          5 + (-12) = -7
+A = 5
+B = 10
+C = -8
+D = 1,5
+
+
+////CAPÍTULO 4
+
+
+///Estruturas de Dados - Vetores
+
+Exercício 1. Crie um algoritmo que leia um vetor de 30 números inteiros e gere um segundo vetor cujas posições pares são o dobro do vetor original e as ímpares o triplo.
+
+#include <stdio.h>
+
+// Função para criar o segundo vetor com posições pares dobradas e ímpares triplicadas
+void criarSegundoVetor(int vetorOriginal[], int segundoVetor[]) {
+    for (int i = 0; i < 30; i++) {
+        if (i % 2 == 0) { // Posições pares
+            segundoVetor[i] = vetorOriginal[i] * 2;
+        } else { // Posições ímpares
+            segundoVetor[i] = vetorOriginal[i] * 3;
+        }
+    }
+}
+
+// Função principal
+int main() {
+    int vetorOriginal[30];
+    int segundoVetor[30];
+
+    // Leitura do vetor de 30 numeros inteiros
+    for (int i = 0; i < 30; i++) {
+        printf("Digite o %do numero inteiro: ", i + 1);
+        scanf("%d", &vetorOriginal[i]);
+    }
+
+    // Chamada da função para criar o segundo vetor
+    criarSegundoVetor(vetorOriginal, segundoVetor);
+
+    // Exibição do segundo vetor
+    printf("\nVetor Original: ");
+    for (int i = 0; i < 30; i++) {
+        printf("%d ", vetorOriginal[i]);
+    }
+
+    printf("\nSegundo Vetor: ");
+    for (int i = 0; i < 30; i++) {
+        printf("%d ", segundoVetor[i]);
+    }
+
+    return 0;
+}
+
+Exercício 2. Desenvolva um algoritmo que permita a leitura de um vetor de 30 números inteiros, e gere um segundo vetor com os mesmos dados, só que de maneira invertida, ou seja, o primeiro elemento ficará na última posiçã, o segundo na pénúltima posição, e assim por diante.
+
+#include <stdio.h>
+
+// Função para inverter um vetor
+void inverterVetor(int vetorOriginal[], int vetorInvertido[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        vetorInvertido[i] = vetorOriginal[tamanho - i - 1];
+    }
+}
+
+// Função principal
+int main() {
+    int vetorOriginal[30];
+    int vetorInvertido[30];
+
+    // Leitura do vetor de 30 números inteiros
+    printf("Digite 30 números inteiros:\n");
+    for (int i = 0; i < 30; i++) {
+        scanf("%d", &vetorOriginal[i]);
+    }
+
+    // Chamada da função para inverter o vetor
+    inverterVetor(vetorOriginal, vetorInvertido, 30);
+
+    // Exibição dos vetores
+    printf("\nVetor Original: ");
+    for (int i = 0; i < 30; i++) {
+        printf("%d ", vetorOriginal[i]);
+    }
+
+    printf("\nVetor Invertido: ");
+    for (int i = 0; i < 30; i++) {
+        printf("%d ", vetorInvertido[i]);
+    }
+
+    return 0;
+}
+
+Exercício 3. Elabore um algoritmo que leia 50 números inteiros e obtenha qual o tamanho da maior sequencia consecutiva de números em ordem crescente.
+
+#include <stdio.h>
+
+// Função para encontrar o tamanho da maior sequência crescente
+int maiorSequenciaCrescente(int vetor[], int tamanho) {
+    int tamanhoAtual = 1;
+    int maiorTamanho = 1;
+
+    for (int i = 1; i < tamanho; i++) {
+        if (vetor[i] > vetor[i - 1]) {
+            tamanhoAtual++;
+        } else {
+            if (tamanhoAtual > maiorTamanho) {
+                maiorTamanho = tamanhoAtual;
+            }
+            tamanhoAtual = 1;
+        }
+    }
+
+    // Verificar novamente no final, caso a maior sequência esteja no final do vetor
+    if (tamanhoAtual > maiorTamanho) {
+        maiorTamanho = tamanhoAtual;
+    }
+
+    return maiorTamanho;
+}
+
+// Função principal
+int main() {
+    int vetor[50];
+
+    // Leitura do vetor de 50 números inteiros
+    printf("Digite 50 números inteiros:\n");
+    for (int i = 0; i < 50; i++) {
+        scanf("%d", &vetor[i]);
+    }
+
+    // Chamada da função para encontrar o tamanho da maior sequência crescente
+    int tamanhoMaiorSequencia = maiorSequenciaCrescente(vetor, 50);
+
+    // Exibição do resultado
+    printf("O tamanho da maior sequência crescente é: %d\n", tamanhoMaiorSequencia);
+
+    return 0;
+}
+
+Exercício 4. Elabore um algoritmo que leia uma série de 50 notas, e calcule quantas são 10% acima da média e qunatas são 10% abaixo.
+
+#include <stdio.h>
+
+// Função para calcular a média das notas
+float calcularMedia(float notas[], int tamanho) {
+    float soma = 0;
+
+    for (int i = 0; i < tamanho; i++) {
+        soma += notas[i];
+    }
+
+    return soma / tamanho;
+}
+
+// Função principal
+int main() {
+    float notas[50];
+    float media, limiteSuperior, limiteInferior;
+    int acimaDaMedia = 0, abaixoDaMedia = 0;
+
+    // Leitura das 50 notas
+    printf("Digite 50 notas:\n");
+    for (int i = 0; i < 50; i++) {
+        scanf("%f", &notas[i]);
+    }
+
+    // Cálculo da média
+    media = calcularMedia(notas, 50);
+
+    // Definição dos limites para 10% acima e abaixo da média
+    limiteSuperior = 1.1 * media;
+    limiteInferior = 0.9 * media;
+
+    // Verificação de notas acima e abaixo da média
+    for (int i = 0; i < 50; i++) {
+        if (notas[i] > limiteSuperior) {
+            acimaDaMedia++;
+        } else if (notas[i] < limiteInferior) {
+            abaixoDaMedia++;
+        }
+    }
+
+    // Exibição do resultado
+    printf("\nMédia: %.2f\n", media);
+    printf("Notas 10%% acima da média: %d\n", acimaDaMedia);
+    printf("Notas 10%% abaixo da média: %d\n", abaixoDaMedia);
+
+    return 0;
+}
+
+Exercício 5. Faça um algoritmo que leia o nome, o custo e o preço de 50 produtos. Ao final deverá relacionar os produtos que:
+          a) Tem lucro menor que 10%
+#include <stdio.h>
+
+#define MAX_PRODUTOS 50
+
+// Estrutura para armazenar informações sobre um produto
+typedef struct {
+    char nome[50];
+    float custo;
+    float preco;
+} Produto;
+
+// Função para verificar o lucro de um produto
+float calcularLucro(Produto produto) {
+    return (produto.preco - produto.custo) / produto.custo * 100.0;
+}
+
+// Função principal
+int main() {
+    Produto produtos[MAX_PRODUTOS];
+
+    // Leitura dos dados dos 50 produtos
+    printf("Digite os dados dos 50 produtos:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        printf("\nProduto %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%s", produtos[i].nome);
+
+        printf("Custo: ");
+        scanf("%f", &produtos[i].custo);
+
+        printf("Preço: ");
+        scanf("%f", &produtos[i].preco);
+    }
+
+    // Exibição dos produtos com lucro menor que 10
+    printf("\nProdutos com lucro menor que 10:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        float lucro = calcularLucro(produtos[i]);
+
+        if (lucro < 10.0) {
+            printf("Nome: %s, Lucro: %.2f\n", produtos[i].nome, lucro);
+        }
+    }
+
+    return 0;
+}
+
+          b) Tem lucro entre 10% e 30%
+#include <stdio.h>
+
+#define MAX_PRODUTOS 50
+
+// Estrutura para armazenar informações sobre um produto
+typedef struct {
+    char nome[50];
+    float custo;
+    float preco;
+} Produto;
+
+// Função para calcular o lucro percentual de um produto
+float calcularLucro(Produto produto) {
+    return ((produto.preco - produto.custo) / produto.custo) * 100.0;
+}
+
+// Função principal
+int main() {
+    Produto produtos[MAX_PRODUTOS];
+
+    // Leitura dos dados dos 50 produtos
+    printf("Digite os dados dos 50 produtos:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        printf("\nProduto %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%s", produtos[i].nome);
+
+        printf("Custo: ");
+        scanf("%f", &produtos[i].custo);
+
+        printf("Preço: ");
+        scanf("%f", &produtos[i].preco);
+    }
+
+    // Exibição dos produtos com lucro entre 10% e 30%
+    printf("\nProdutos com lucro entre 10%% e 30%%:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        float lucro = calcularLucro(produtos[i]);
+
+        if (lucro >= 10.0 && lucro <= 30.0) {
+            printf("Nome: %s, Lucro: %.2f\n", produtos[i].nome, lucro);
+        }
+    }
+
+    return 0;
+}
+
+          c) Tem lucro maior que 30%
+#include <stdio.h>
+
+#define MAX_PRODUTOS 50
+
+// Estrutura para armazenar informações sobre um produto
+typedef struct {
+    char nome[50];
+    float custo;
+    float preco;
+} Produto;
+
+// Função para calcular o lucro percentual de um produto
+float calcularLucro(Produto produto) {
+    return ((produto.preco - produto.custo) / produto.custo) * 100.0;
+}
+
+// Função principal
+int main() {
+    Produto produtos[MAX_PRODUTOS];
+
+    // Leitura dos dados dos 50 produtos
+    printf("Digite os dados dos 50 produtos:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        printf("\nProduto %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%s", produtos[i].nome);
+
+        printf("Custo: ");
+        scanf("%f", &produtos[i].custo);
+
+        printf("Preço: ");
+        scanf("%f", &produtos[i].preco);
+    }
+
+    // Exibição dos produtos com lucro maior que 30%
+    printf("\nProdutos com lucro maior que 30%%:\n");
+    for (int i = 0; i < MAX_PRODUTOS; i++) {
+        float lucro = calcularLucro(produtos[i]);
+
+        if (lucro > 30.0) {
+            printf("Nome: %s, Lucro: %.2f\n", produtos[i].nome, lucro);
+        }
+    }
+
+    return 0;
+}
+
+
+Exercício 6. Construa um algoritmo que permira informae dados para 2 vetores inteiros de 20 posições, e apresente a intersecção dos vetores. Lembrando que intersecção são os elementos repetidos em ambos os vetores, mas sem repetição (cada número pode aparecer uma única vez no resultado).
+
+#include <stdio.h>
+
+#define TAMANHO_VETOR 20
+
+// Função para verificar se um elemento está presente em um vetor
+int estaNoVetor(int elemento, int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] == elemento) {
+            return 1; // Verdadeiro, está no vetor
+        }
+    }
+    return 0; // Falso, não está no vetor
+}
+
+// Função para calcular e exibir a interseção de dois vetores
+void calcularIntersecao(int vetor1[], int vetor2[], int tamanho) {
+    printf("Interseção dos vetores:\n");
+
+    for (int i = 0; i < tamanho; i++) {
+        if (estaNoVetor(vetor1[i], vetor2, tamanho) && !estaNoVetor(vetor1[i], vetor1, i)) {
+            printf("%d ", vetor1[i]);
+        }
+    }
+
+    printf("\n");
+}
+
+// Função principal
+int main() {
+    int vetor1[TAMANHO_VETOR];
+    int vetor2[TAMANHO_VETOR];
+
+    // Leitura de dados para o primeiro vetor
+    printf("Informe os elementos para o primeiro vetor:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor1[i]);
+    }
+
+    // Leitura de dados para o segundo vetor
+    printf("\nInforme os elementos para o segundo vetor:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor2[i]);
+    }
+
+    // Calcular e exibir a interseção
+    calcularIntersecao(vetor1, vetor2, TAMANHO_VETOR);
+
+    return 0;
+}
+
+
+Exercício 7. Construa um algoritmo que permira informae dados para 2 vetores inteiros de 20 posições, e apresente o conjunto união dos vetores. Lembrando que conjunto união são todos os elementos que existem em ambos os vetores, mas sem repetição (cada número pode aparecer uma unica vez no resultado).
+#include <stdio.h>
+
+#define TAMANHO_VETOR 20
+
+// Função para verificar se um elemento está presente em um vetor
+int estaNoVetor(int elemento, int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
+        if (vetor[i] == elemento) {
+            return 1; // Verdadeiro, está no vetor
+        }
+    }
+    return 0; // Falso, não está no vetor
+}
+
+// Função para calcular e exibir a união de dois vetores
+void calcularUniao(int vetor1[], int vetor2[], int tamanho) {
+    printf("Conjunto União dos vetores:\n");
+
+    // Exibir elementos do primeiro vetor
+    for (int i = 0; i < tamanho; i++) {
+        printf("%d ", vetor1[i]);
+    }
+
+    // Exibir elementos do segundo vetor que não estão no primeiro vetor
+    for (int i = 0; i < tamanho; i++) {
+        if (!estaNoVetor(vetor2[i], vetor1, tamanho)) {
+            printf("%d ", vetor2[i]);
+        }
+    }
+
+    printf("\n");
+}
+
+// Função principal
+int main() {
+    int vetor1[TAMANHO_VETOR];
+    int vetor2[TAMANHO_VETOR];
+
+    // Leitura de dados para o primeiro vetor
+    printf("Informe os elementos para o primeiro vetor:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor1[i]);
+    }
+
+    // Leitura de dados para o segundo vetor
+    printf("\nInforme os elementos para o segundo vetor:\n");
+    for (int i = 0; i < TAMANHO_VETOR; i++) {
+        printf("Elemento %d: ", i + 1);
+        scanf("%d", &vetor2[i]);
+    }
+
+    // Calcular e exibir a união
+    calcularUniao(vetor1, vetor2, TAMANHO_VETOR);
+
+    return 0;
+}
+
+Exercício 8. Crie um algoritmo que leia a pontuação final de 200 provas de um concurso e os nomes dos respectivos participantes, e apresente um ranking dos colocados que obtiveram mais de 70 pontos.
+
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_PARTICIPANTES 200
+#define PONTUACAO_MINIMA 70
+
+// Estrutura para armazenar informações sobre um participante
+typedef struct {
+    char nome[50];
+    float pontuacao;
+} Participante;
+
+// Função para exibir o ranking dos participantes com mais de 70 pontos
+void exibirRanking(Participante participantes[], int numParticipantes) {
+    printf("\nRanking dos participantes com mais de 70 pontos:\n");
+    printf("==============================================\n");
+    printf("  %-20s %-10s\n", "Nome", "Pontuação");
+    printf("----------------------------------------------\n");
+
+    for (int i = 0; i < numParticipantes; i++) {
+        if (participantes[i].pontuacao > PONTUACAO_MINIMA) {
+            printf("  %-20s %-10.2f\n", participantes[i].nome, participantes[i].pontuacao);
+        }
+    }
+
+    printf("==============================================\n");
+}
+
+// Função principal
+int main() {
+    Participante participantes[NUM_PARTICIPANTES];
+
+    // Leitura dos dados dos participantes
+    printf("Digite os dados dos participantes:\n");
+    for (int i = 0; i < NUM_PARTICIPANTES; i++) {
+        printf("\nParticipante %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%s", participantes[i].nome);
+
+        printf("Pontuação: ");
+        scanf("%f", &participantes[i].pontuacao);
+    }
+
+    // Exibição do ranking
+    exibirRanking(participantes, NUM_PARTICIPANTES);
+
+    return 0;
+}
+
+Exercício 9. Dado um vetor com dados de 50 alturas, elabore um algoritmo que permita calcular: 
+          a) A média das alturas;
+
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_PARTICIPANTES 200
+#define PONTUACAO_MINIMA 70
+
+// Estrutura para armazenar informações sobre um participante
+typedef struct {
+    char nome[50];
+    float pontuacao;
+} Participante;
+
+// Função para exibir o ranking dos participantes com mais de 70 pontos
+void exibirRanking(Participante participantes[], int numParticipantes) {
+    printf("\nRanking dos participantes com mais de 70 pontos:\n");
+    printf("==============================================\n");
+    printf("  %-20s %-10s\n", "Nome", "Pontuação");
+    printf("----------------------------------------------\n");
+
+    for (int i = 0; i < numParticipantes; i++) {
+        if (participantes[i].pontuacao > PONTUACAO_MINIMA) {
+            printf("  %-20s %-10.2f\n", participantes[i].nome, participantes[i].pontuacao);
+        }
+    }
+
+    printf("==============================================\n");
+}
+
+// Função principal
+int main() {
+    Participante participantes[NUM_PARTICIPANTES];
+
+    // Leitura dos dados dos participantes
+    printf("Digite os dados dos participantes:\n");
+    for (int i = 0; i < NUM_PARTICIPANTES; i++) {
+        printf("\nParticipante %d:\n", i + 1);
+
+        printf("Nome: ");
+        scanf("%s", participantes[i].nome);
+
+        printf("Pontuação: ");
+        scanf("%f", &participantes[i].pontuacao);
+    }
+
+    // Exibição do ranking
+    exibirRanking(participantes, NUM_PARTICIPANTES);
+
+    return 0;
+}
+
+          b) O desvio padrão das alturas. Lembrando que o desvio padrão é dado por (soma(alturas²)/número de alturas) - Média²
+#include <stdio.h>
+#include <math.h>
+
+#define NUM_ALTURAS 50
+
+// Função para calcular a média das alturas
+float calcularMediaAlturas(float alturas[], int numAlturas) {
+    float soma = 0;
+
+    for (int i = 0; i < numAlturas; i++) {
+        soma += alturas[i];
+    }
+
+    return soma / numAlturas;
+}
+
+// Função para calcular o desvio padrão das alturas
+float calcularDesvioPadrao(float alturas[], int numAlturas, float media) {
+    float somaQuadrados = 0;
+
+    for (int i = 0; i < numAlturas; i++) {
+        somaQuadrados += pow(alturas[i] - media, 2);
+    }
+
+    return sqrt(somaQuadrados / numAlturas);
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da média das alturas
+    float mediaAlturas = calcularMediaAlturas(alturas, NUM_ALTURAS);
+
+    // Cálculo do desvio padrão das alturas
+    float desvioPadrao = calcularDesvioPadrao(alturas, NUM_ALTURAS, mediaAlturas);
+
+    // Exibição do resultado
+    printf("\nA média das alturas é: %.2f\n", mediaAlturas);
+    printf("O desvio padrão das alturas é: %.2f\n", desvioPadrao);
+
+    return 0;
+}
+
+          c) A moda das alturas. Lembrando que a moda é o valor quem tem maior incidência de repetições;
+#include <stdio.h>
+
+#define NUM_ALTURAS 50
+
+// Função para calcular a moda das alturas
+float calcularModa(float alturas[], int numAlturas) {
+    float moda = alturas[0];  // Inicializa a moda com o primeiro valor
+    int frequenciaMaxima = 1;  // Inicializa a frequência máxima com 1
+
+    for (int i = 0; i < numAlturas; i++) {
+        float valorAtual = alturas[i];
+        int frequenciaAtual = 1;
+
+        for (int j = i + 1; j < numAlturas; j++) {
+            if (alturas[j] == valorAtual) {
+                frequenciaAtual++;
+            }
+        }
+
+        if (frequenciaAtual > frequenciaMaxima) {
+            frequenciaMaxima = frequenciaAtual;
+            moda = valorAtual;
+        }
+    }
+
+    return moda;
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da moda das alturas
+    float modaAlturas = calcularModa(alturas, NUM_ALTURAS);
+
+    // Exibição do resultado
+    printf("\nA moda das alturas é: %.2f\n", modaAlturas);
+
+    return 0;
+}
+
+          d) A mediana das alturas. Lembrando que a mediana é o elemento central de uma lista ordenada.
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_ALTURAS 50
+
+// Função de comparação para a função qsort
+int compararAlturas(const void *a, const void *b) {
+    return (*(float *)a - *(float *)b);
+}
+
+// Função para calcular a mediana das alturas
+float calcularMediana(float alturas[], int numAlturas) {
+    // Ordenar o vetor de alturas
+    qsort(alturas, numAlturas, sizeof(float), compararAlturas);
+
+    // Calcular a mediana
+    if (numAlturas % 2 == 0) {
+        // Se o número de alturas for par, a mediana é a média dos dois valores centrais
+        return (alturas[numAlturas / 2 - 1] + alturas[numAlturas / 2]) / 2.0;
+    } else {
+        // Se o número de alturas for ímpar, a mediana é o valor central
+        return alturas[numAlturas / 2];
+    }
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da mediana das alturas
+    float medianaAlturas = calcularMediana(alturas, NUM_ALTURAS);
+
+    // Exibição do resultado
+    printf("\
+
+///Estruturas de Dados - Matrizes
+
+Exercício 10. Faça um algoritmo que preencha uma matriz 5x5 de inteiros e escreva:
+          a) a soma dos números ímpares fornecidos;
+#include <stdio.h>
+#include <stdlib.h>
+
+#define NUM_ALTURAS 50
+
+// Função de comparação para a função qsort
+int compararAlturas(const void *a, const void *b) {
+    return (*(float *)a - *(float *)b);
+}
+
+// Função para calcular a mediana das alturas
+float calcularMediana(float alturas[], int numAlturas) {
+    // Ordenar o vetor de alturas
+    qsort(alturas, numAlturas, sizeof(float), compararAlturas);
+
+    // Calcular a mediana
+    if (numAlturas % 2 == 0) {
+        // Se o número de alturas for par, a mediana é a média dos dois valores centrais
+        return (alturas[numAlturas / 2 - 1] + alturas[numAlturas / 2]) / 2.0;
+    } else {
+        // Se o número de alturas for ímpar, a mediana é o valor central
+        return alturas[numAlturas / 2];
+    }
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da mediana das alturas
+    float medianaAlturas = calcularMediana(alturas, NUM_ALTURAS);
+
+    // Exibição do resultado
+    printf("\nA mediana das alturas é: %.2f\n", medianaAlturas);
+
+    return 0;
+}
+
+          b) a soma de cada uma das 5 colunas;
+#include <stdio.h>
+
+#define NUM_ALTURAS 50
+#define NUM_COLUNAS 5
+
+// Função para calcular a soma de cada coluna
+void calcularSomaColunas(float alturas[], float somaColunas[]) {
+    int indiceAltura = 0;
+
+    // Inicializar somaColunas com zeros
+    for (int i = 0; i < NUM_COLUNAS; i++) {
+        somaColunas[i] = 0.0;
+    }
+
+    // Calcular a soma de cada coluna
+    for (int j = 0; j < NUM_COLUNAS; j++) {
+        for (int i = 0; i < NUM_ALTURAS / NUM_COLUNAS; i++) {
+            somaColunas[j] += alturas[indiceAltura];
+            indiceAltura++;
+        }
+    }
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+    float somaColunas[NUM_COLUNAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da soma de cada coluna
+    calcularSomaColunas(alturas, somaColunas);
+
+    // Exibição do resultado
+    printf("\nSoma de cada coluna:\n");
+    for (int j = 0; j < NUM_COLUNAS; j++) {
+        printf("Coluna %d: %.2f\n", j + 1, somaColunas[j]);
+    }
+
+    return 0;
+}
+
+          c) a soma de cada uma das 5 linhas.
+#include <stdio.h>
+
+#define NUM_ALTURAS 50
+#define NUM_LINHAS 5
+#define ALTURAS_POR_LINHA (NUM_ALTURAS / NUM_LINHAS)
+
+// Função para calcular a soma de cada linha
+void calcularSomaLinhas(float alturas[], float somaLinhas[]) {
+    int indiceAltura = 0;
+
+    // Inicializar somaLinhas com zeros
+    for (int i = 0; i < NUM_LINHAS; i++) {
+        somaLinhas[i] = 0.0;
+    }
+
+    // Calcular a soma de cada linha
+    for (int i = 0; i < NUM_LINHAS; i++) {
+        for (int j = 0; j < ALTURAS_POR_LINHA; j++) {
+            somaLinhas[i] += alturas[indiceAltura];
+            indiceAltura++;
+        }
+    }
+}
+
+// Função principal
+int main() {
+    float alturas[NUM_ALTURAS];
+    float somaLinhas[NUM_LINHAS];
+
+    // Leitura das alturas
+    printf("Digite as alturas dos 50 indivíduos:\n");
+    for (int i = 0; i < NUM_ALTURAS; i++) {
+        printf("Altura %d: ", i + 1);
+        scanf("%f", &alturas[i]);
+    }
+
+    // Cálculo da soma de cada linha
+    calcularSomaLinhas(alturas, somaLinhas);
+
+    // Exibição do resultado
+    printf("\nSoma de cada linha:\n");
+    for (int i = 0; i < NUM_LINHAS; i++) {
+        printf("Linha %d: %.2f\n", i + 1, somaLinhas[i]);
+    }
+
+    return 0;
+}
+
+
+Exercício 11. Construa um algoritmo que leia um conjunto de número inteiros para preencher uma matriz 10x10 e a partir daí, gere um vetor com os maiores elementos de cada linha e outro vetor com os menores elementos de cada coluna.
+
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 10
+
+// Função para preencher a matriz
+void preencherMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+// Função para gerar vetor dos maiores elementos de cada linha
+void maioresElementosLinha(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int maiores[]) {
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        int maior = matriz[i][0];
+
+        for (int j = 1; j < TAMANHO_MATRIZ; j++) {
+            if (matriz[i][j] > maior) {
+                maior = matriz[i][j];
+            }
+        }
+
+        maiores[i] = maior;
+    }
+}
+
+// Função para gerar vetor dos menores elementos de cada coluna
+void menoresElementosColuna(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int menores[]) {
+    for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+        int menor = matriz[0][j];
+
+        for (int i = 1; i < TAMANHO_MATRIZ; i++) {
+            if (matriz[i][j] < menor) {
+                menor = matriz[i][j];
+            }
+        }
+
+        menores[j] = menor;
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+    int maioresLinhas[TAMANHO_MATRIZ];
+    int menoresColunas[TAMANHO_MATRIZ];
+
+    // Preencher a matriz
+    preencherMatriz(matriz);
+
+    // Gerar vetor dos maiores elementos de cada linha
+    maioresElementosLinha(matriz, maioresLinhas);
+
+    // Gerar vetor dos menores elementos de cada coluna
+    menoresElementosColuna(matriz, menoresColunas);
+
+    // Exibir resultados
+    printf("\nVetor dos maiores elementos de cada linha:\n");
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        printf("%d ", maioresLinhas[i]);
+    }
+
+    printf("\n\nVetor dos menores elementos de cada coluna:\n");
+    for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+        printf("%d ", menoresColunas[j]);
+    }
+
+    return 0;
+}
+
+Exercício 12. Dada uma matriz 5x5, elabores um algoritmo que escreva:
+          a) a diagoral principal;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir a diagonal principal da matriz
+void exibirDiagonalPrincipal(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Diagonal Principal:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i == j) {
+                printf("%d ", matriz[i][j]);
+            } else {
+                printf("   "); // Espaços para manter a formatação
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir a diagonal principal
+    exibirDiagonalPrincipal(matriz);
+
+    return 0;
+}
+
+          b) o triangulo superior à diagonal principal;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir o triângulo superior à diagonal principal da matriz
+void exibirTrianguloSuperior(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Triângulo Superior à Diagonal Principal:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (j >= i) {
+                printf("%d ", matriz[i][j]);
+            } else {
+                printf("   "); // Espaços para manter a formatação
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir o triângulo superior à diagonal principal
+    exibirTrianguloSuperior(matriz);
+
+    return 0;
+}
+
+          c) o triângulo inferior à diagonal principal;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir o triângulo superior à diagonal principal da matriz
+void exibirTrianguloSuperior(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Triângulo Superior à Diagonal Principal:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (j >= i) {
+                printf("%d ", matriz[i][j]);
+            } else {
+                printf("   "); // Espaços para manter a formatação
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir o triângulo superior à diagonal principal
+    exibirTrianguloSuperior(matriz);
+
+    return 0;
+}
+
+          d) tudo exceto a diagonal principal;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir todos os elementos, exceto a diagonal principal
+void exibirMatrizExcetoDiagonal(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz 5x5 exceto a diagonal principal:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i == j) {
+                printf("    "); // Espaços para manter a formatação
+            } else {
+                printf("%4d ", matriz[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir a matriz exceto a diagonal principal
+    exibirMatrizExcetoDiagonal(matriz);
+
+    return 0;
+}
+
+
+          e) a diagonal secundária;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir a diagonal secundária da matriz
+void exibirDiagonalSecundaria(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Diagonal Secundária:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i + j == TAMANHO_MATRIZ - 1) {
+                printf("%4d ", matriz[i][j]);
+            } else {
+                printf("    "); // Espaços para manter a formatação
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir a diagonal secundária
+    exibirDiagonalSecundaria(matriz);
+
+    return 0;
+}
+
+          f) o triângulo superior à diagonal secundária;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir o triângulo superior à diagonal secundária da matriz
+void exibirTrianguloSuperiorDiagonalSecundaria(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Triângulo Superior à Diagonal Secundária:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i + j < TAMANHO_MATRIZ - 1) {
+                printf("    "); // Espaços para manter a formatação
+            } else {
+                printf("%4d ", matriz[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir o triângulo superior à diagonal secundária
+    exibirTrianguloSuperiorDiagonalSecundaria(matriz);
+
+    return 0;
+}
+
+          g) o triângulo inferior à diagonal secundária;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir o triângulo inferior à diagonal secundária da matriz
+void exibirTrianguloInferiorDiagonalSecundaria(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Triângulo Inferior à Diagonal Secundária:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i + j > TAMANHO_MATRIZ - 1) {
+                printf("%4d ", matriz[i][j]);
+            } else {
+                printf("    "); // Espaços para manter a formatação
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir o triângulo inferior à diagonal secundária
+    exibirTrianguloInferiorDiagonalSecundaria(matriz);
+
+    return 0;
+}
+
+          h) tudo exceto a diagonal secundária.
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para exibir todos os elementos, exceto a diagonal secundária
+void exibirMatrizExcetoDiagonalSecundaria(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz 5x5 exceto a diagonal secundária:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            if (i + j == TAMANHO_MATRIZ - 1) {
+                printf("    "); // Espaços para manter a formatação
+            } else {
+                printf("%4d ", matriz[i][j]);
+            }
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Exibir a matriz exceto a diagonal secundária
+    exibirMatrizExcetoDiagonalSecundaria(matriz);
+
+    return 0;
+}
+
+
+Exercício 13. Elabore um algoritmo que preencha uma matriz 5x5 de inteiros e depois faça:
+          a) trocar a segunda e a quinta linha;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+// Função para trocar a segunda e a quinta linha da matriz
+void trocarLinhas(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    int temp[TAMANHO_MATRIZ];
+
+    // Trocar a segunda e a quinta linha
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        temp[i] = matriz[1][i];
+        matriz[1][i] = matriz[4][i];
+        matriz[4][i] = temp[i];
+    }
+}
+
+// Função para exibir a matriz
+void exibirMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz 5x5 após trocar a segunda e a quinta linha:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("%4d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preencher a matriz (exemplo)
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+
+    // Trocar a segunda e a quinta linha
+    trocarLinhas(matriz);
+
+    // Exibir a matriz após a troca
+    exibirMatriz(matriz);
+
+    return 0;
+}
+
+          b) trocar a primeira e a quarta coluna;
+          c) trocar a diagonal principal e a secundária;
+          d) escrever como ficou a matriz
+
+
+Exercício 14. Prepare um algoritmo que seja capaz de ler números inteiros para uma matriz 10x10 e depois gire seus elementos em 90 graus no sentido horário, ou seja, a primeira coluna passa a ser a primeira linha, e assim por diante.
+
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 10
+
+// Função para ler a matriz
+void lerMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Digite os elementos para a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Elemento [%d][%d]: ", i + 1, j + 1);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+// Função para girar a matriz em 90 graus no sentido horário
+void girarMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    int matrizGirada[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            matrizGirada[j][TAMANHO_MATRIZ - 1 - i] = matriz[i][j];
+        }
+    }
+
+    // Atualizar a matriz original com a matriz girada
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            matriz[i][j] = matrizGirada[i][j];
+        }
+    }
+}
+
+// Função para exibir a matriz
+void exibirMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz 10x10 girada em 90 graus no sentido horário:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("%4d ", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+// Função principal
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Ler a matriz
+    lerMatriz(matriz);
+
+    // Girar a matriz em 90 graus no sentido horário
+    girarMatriz(matriz);
+
+    // Exibir a matriz girada
+    exibirMatriz(matriz);
+
+    return 0;
+}
+
+/// Estruturas de Dados - Registros
+
+Exercício 15. Uma determinada biblioteca possui obras de ciências exatas, ciências humanas e ciências biomédicas, totalizando 1.500 volumes, 500 de cada área. O proprietário resolveu informatizá-la e, oara tal, agrupou as informações sobre cada livro do seguinte modo:
+
+ _______________________________________________________________________________________
+|                                                                                       |
+|   Código de catalogação: ___________________________________ Doado: _______________   |
+|   Nome da obra: ___________________________________________________________________   |
+|   Nome do autor: __________________________________________________________________   |
+|   Editora: ____________________________________________ Nº de páginas: ____________   |
+|                                                                                       |
+|_______________________________________________________________________________________|
+
+          a) Construa um algoritmo que declare tal estrutura e que reúna todas as informações de todas as obras em três vetores distintos para cada área.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+int main() {
+    // Declaração dos vetores para cada área
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    for (int i = 0; i < NUM_OBRAS; i++) {
+        // Preenchimento para Ciências Exatas
+        strcpy(cienciasExatas[i].codigoCatalogacao, "EXATAS123");
+        strcpy(cienciasExatas[i].doado, "Sim");
+        sprintf(cienciasExatas[i].nomeObra, "Obra de Exatas %d", i + 1);
+        sprintf(cienciasExatas[i].nomeAutor, "Autor Exatas %d", i + 1);
+        strcpy(cienciasExatas[i].editora, "Editora Exatas");
+        cienciasExatas[i].numPaginas = 200;
+
+        // Preenchimento para Ciências Humanas
+        strcpy(cienciasHumanas[i].codigoCatalogacao, "HUMANAS123");
+        strcpy(cienciasHumanas[i].doado, "Não");
+        sprintf(cienciasHumanas[i].nomeObra, "Obra de Humanas %d", i + 1);
+        sprintf(cienciasHumanas[i].nomeAutor, "Autor Humanas %d", i + 1);
+        strcpy(cienciasHumanas[i].editora, "Editora Humanas");
+        cienciasHumanas[i].numPaginas = 250;
+
+        // Preenchimento para Ciências Biomédicas
+        strcpy(cienciasBiomedicas[i].codigoCatalogacao, "BIOMEDICAS123");
+        strcpy(cienciasBiomedicas[i].doado, "Sim");
+        sprintf(cienciasBiomedicas[i].nomeObra, "Obra de Biomédicas %d", i + 1);
+        sprintf(cienciasBiomedicas[i].nomeAutor, "Autor Biomédicas %d", i + 1);
+        strcpy(cienciasBiomedicas[i].editora, "Editora Biomédicas");
+        cienciasBiomedicas[i].numPaginas = 300;
+    }
+
+    // Exemplo de como acessar informações de uma obra específica
+    printf("Informações sobre a primeira obra de Ciências Exatas:\n");
+    printf("Código de catalogação: %s\n", cienciasExatas[0].codigoCatalogacao);
+    printf("Doado: %s\n", cienciasExatas[0].doado);
+    printf("Nome da obra: %s\n", cienciasExatas[0].nomeObra);
+    printf("Nome do autor: %s\n", cienciasExatas[0].nomeAutor);
+    printf("Editora: %s\n", cienciasExatas[0].editora);
+    printf("Número de páginas: %d\n", cienciasExatas[0].numPaginas);
+
+    // Outras operações podem ser realizadas conforme necessário
+
+    return 0;
+}
+
+          b) Elabore um trecho de algoritmo que, utilizando como premissa o que foi feito no item a, realize uma consulta às informações. O usuário fornecerá código da obra e sua área; existindo tal livro, informa seus campo; do contrário, envia mensagem de aviso. A consulta repete-se até que o usuário introduza código finalizador como o valor -1.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para realizar a consulta
+void realizarConsulta(struct Obra obras[], int numObras, char codigo[], char area[]) {
+    int encontrada = 0;
+
+    for (int i = 0; i < numObras; i++) {
+        if (strcmp(obras[i].codigoCatalogacao, codigo) == 0) {
+            encontrada = 1;
+
+            if (strcmp(area, "exatas") == 0) {
+                // Área de Ciências Exatas
+                if (i < NUM_OBRAS) {
+                    printf("Informações sobre a obra de Ciências Exatas:\n");
+                    printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+                    printf("Doado: %s\n", obras[i].doado);
+                    printf("Nome da obra: %s\n", obras[i].nomeObra);
+                    printf("Nome do autor: %s\n", obras[i].nomeAutor);
+                    printf("Editora: %s\n", obras[i].editora);
+                    printf("Número de páginas: %d\n", obras[i].numPaginas);
+                }
+            } else if (strcmp(area, "humanas") == 0) {
+                // Área de Ciências Humanas
+                if (i >= NUM_OBRAS && i < 2 * NUM_OBRAS) {
+                    printf("Informações sobre a obra de Ciências Humanas:\n");
+                    printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+                    printf("Doado: %s\n", obras[i].doado);
+                    printf("Nome da obra: %s\n", obras[i].nomeObra);
+                    printf("Nome do autor: %s\n", obras[i].nomeAutor);
+                    printf("Editora: %s\n", obras[i].editora);
+                    printf("Número de páginas: %d\n", obras[i].numPaginas);
+                }
+            } else if (strcmp(area, "biomedicas") == 0) {
+                // Área de Ciências Biomédicas
+                if (i >= 2 * NUM_OBRAS && i < 3 * NUM_OBRAS) {
+                    printf("Informações sobre a obra de Ciências Biomédicas:\n");
+                    printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+                    printf("Doado: %s\n", obras[i].doado);
+                    printf("Nome da obra: %s\n", obras[i].nomeObra);
+                    printf("Nome do autor: %s\n", obras[i].nomeAutor);
+                    printf("Editora: %s\n", obras[i].editora);
+                    printf("Número de páginas: %d\n", obras[i].numPaginas);
+                }
+            }
+        }
+    }
+
+    if (!encontrada) {
+        printf("Obra não encontrada.\n");
+    }
+}
+
+int main() {
+    // Declaração dos vetores para cada área
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    int codigoFinalizador = -1;
+    char codigoConsulta[20];
+    char areaConsulta[20];
+
+    while (1) {
+        // Solicitar código de consulta e área
+        printf("\nDigite o código da obra (ou -1 para sair): ");
+        scanf("%s", codigoConsulta);
+
+        if (strcmp(codigoConsulta, "-1") == 0) {
+            // Verificar se é o código finalizador
+            break;
+        }
+
+        printf("Digite a área da obra (exatas, humanas, biomedicas): ");
+        scanf("%s", areaConsulta);
+
+        // Realizar a consulta
+        realizarConsulta(cienciasExatas, NUM_OBRAS, codigoConsulta, areaConsulta);
+        realizarConsulta(cienciasHumanas, NUM_OBRAS, codigoConsulta, areaConsulta);
+        realizarConsulta(cienciasBiomedicas, NUM_OBRAS, codigoConsulta, areaConsulta);
+    }
+
+    return 0;
+}
+
+          c) Idem ao item b, porém o usuário simplesmente informa o nome e a área do livro que deseja consultar.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para realizar a consulta
+void consultarLivro(struct Obra obras[], int numLivros, const char nomeConsulta[], const char areaConsulta[]) {
+    int encontrado = 0;
+
+    for (int i = 0; i < numLivros; i++) {
+        if (strcmp(obras[i].nomeObra, nomeConsulta) == 0 && strcmp(areaConsulta, "Exatas") == 0) {
+            printf("Informações sobre o livro:\n");
+            printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+            printf("Doado: %s\n", obras[i].doado);
+            printf("Nome da obra: %s\n", obras[i].nomeObra);
+            printf("Nome do autor: %s\n", obras[i].nomeAutor);
+            printf("Editora: %s\n", obras[i].editora);
+            printf("Número de páginas: %d\n", obras[i].numPaginas);
+            encontrado = 1;
+            break;
+        } else if (strcmp(obras[i].nomeObra, nomeConsulta) == 0 && strcmp(areaConsulta, "Humanas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        } else if (strcmp(obras[i].nomeObra, nomeConsulta) == 0 && strcmp(areaConsulta, "Biomedicas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Livro não encontrado.\n");
+    }
+}
+
+int main() {
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    int codigoFinalizador = -1;
+    char nomeConsulta[100];
+    char areaConsulta[20];
+
+    while (1) {
+        printf("\nDigite o nome do livro que deseja consultar (ou -1 para sair): ");
+        scanf("%s", nomeConsulta);
+
+        if (strcmp(nomeConsulta, "-1") == 0) {
+            break; // Código finalizador, encerra o loop
+        }
+
+        printf("Digite a área do livro (Exatas, Humanas, Biomedicas): ");
+        scanf("%s", areaConsulta);
+
+        // Consulta às informações do livro
+        if (strcmp(areaConsulta, "Exatas") == 0) {
+            consultarLivro(cienciasExatas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else if (strcmp(areaConsulta, "Humanas") == 0) {
+            consultarLivro(cienciasHumanas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else if (strcmp(areaConsulta, "Biomedicas") == 0) {
+            consultarLivro(cienciasBiomedicas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else {
+            printf("Área inválida. Tente novamente.\n");
+        }
+    }
+
+    return 0;
+}
+
+          d) Escreva um trecho de algoritmo que liste todas as obras de cada área que representem livros doados.
+          e) Idem ao item d, porém, obras cujos livros sejam comprados e cujo número de páginas se encotre entre 100 e 300.
+          f) Elabore um trecho de algoritmo que faça a alteração de um registro; para tal, o usuário fornece o código, a área e as demais informações sobre o livro. Lembre-se de que somente pode ser alterado um livro existente. 
+          g) Construa um trecho de algoritmo que efetue a exclusão de algum livro; o usuário fornecerá o código e a área. Lembre-se de que somente pode ser excluído um livro existente.
+
+Exercício 16. Para o controle dos veículos que circulam em uma determinada cidade, a Secretaria dos Transportes criou o seguinte registro-padrão:
+
+ _______________________________________________________________________________________
+|                                                                                       |
+|   Propritário: _______________________________________ Combustível: _______________   |
+|   Modelo: _______________________________________________ Cor: ____________________   |
+|   Nº chassi: _________________________ Ano: ________________ Placa: _______________   |
+|                                                                                       |
+|_______________________________________________________________________________________|
+
+Em que:
+ - combustível pode ser álcool, diesel ou gasolina;
+ - placa possui os três primeiros valores alfabéticos e os quatro restante valores númericos.
+
+Sabendo que o número máximo de veículos da cidade é de 5.000 unidades e que os valores são precisam ser lidos.
+
+          a) Construa um algoritmo que liste todos os proprietários cujos carros são do ano de 1980 ou posterior e que sejam movidos a diesel.
+          b) Escreva um algoritmo que liste todas as placas que comecem com a letraA e terminem com 0, 2, 4 ou 7 e seus respectivos proprietários. (Sugestão: utilize placa como um vetor de caracter)
+          c) Elabore um algoritmo que liste o modelo e a cor dos veículos cujas placas possuem como segunda letra uma vogal e cuja soma dos valores númericos fornece um número par.
+          d) Construa um algoritmo que permita a troca de proprietário com o fornecimento do número do chassi apenas para carros com placas que não possuam nenhum dígito igual a zero
+
+
+
+
+
