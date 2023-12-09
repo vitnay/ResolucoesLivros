@@ -1359,8 +1359,143 @@ int main() {
 }
 
           b) trocar a primeira e a quarta coluna;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+void preencherMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Preencha a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Digite o elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+void trocarColunas(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ], int coluna1, int coluna2) {
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        int temp = matriz[i][coluna1];
+        matriz[i][coluna1] = matriz[i][coluna2];
+        matriz[i][coluna2] = temp;
+    }
+}
+
+void imprimirMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz resultante:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preenche a matriz
+    preencherMatriz(matriz);
+
+    // Troca a primeira e a quarta coluna
+    trocarColunas(matriz, 0, 3);
+
+    // Imprime a matriz resultante
+    imprimirMatriz(matriz);
+
+    return 0;
+}
+
           c) trocar a diagonal principal e a secundária;
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+void preencherMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Preencha a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Digite o elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+void trocarDiagonais(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        int temp = matriz[i][i];
+        matriz[i][i] = matriz[i][TAMANHO_MATRIZ - 1 - i];
+        matriz[i][TAMANHO_MATRIZ - 1 - i] = temp;
+    }
+}
+
+void imprimirMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz resultante:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preenche a matriz
+    preencherMatriz(matriz);
+
+    // Troca a diagonal principal com a diagonal secundária
+    trocarDiagonais(matriz);
+
+    // Imprime a matriz resultante
+    imprimirMatriz(matriz);
+
+    return 0;
+}
+
           d) escrever como ficou a matriz
+#include <stdio.h>
+
+#define TAMANHO_MATRIZ 5
+
+void preencherMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Preencha a matriz %dx%d:\n", TAMANHO_MATRIZ, TAMANHO_MATRIZ);
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("Digite o elemento [%d][%d]: ", i, j);
+            scanf("%d", &matriz[i][j]);
+        }
+    }
+}
+
+void imprimirMatriz(int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ]) {
+    printf("Matriz resultante:\n");
+
+    for (int i = 0; i < TAMANHO_MATRIZ; i++) {
+        for (int j = 0; j < TAMANHO_MATRIZ; j++) {
+            printf("%d\t", matriz[i][j]);
+        }
+        printf("\n");
+    }
+}
+
+int main() {
+    int matriz[TAMANHO_MATRIZ][TAMANHO_MATRIZ];
+
+    // Preenche a matriz
+    preencherMatriz(matriz);
+
+    // Imprime a matriz resultante
+    imprimirMatriz(matriz);
+
+    return 0;
+}
 
 
 Exercício 14. Prepare um algoritmo que seja capaz de ler números inteiros para uma matriz 10x10 e depois gire seus elementos em 90 graus no sentido horário, ou seja, a primeira coluna passa a ser a primeira linha, e assim por diante.
@@ -1692,9 +1827,321 @@ int main() {
 }
 
           d) Escreva um trecho de algoritmo que liste todas as obras de cada área que representem livros doados.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para listar obras doadas de uma área específica
+void listarObrasDoadas(struct Obra obras[], int numLivros, const char area[]) {
+    printf("Obras doadas na área de %s:\n", area);
+
+    for (int i = 0; i < numLivros; i++) {
+        if (strcmp(obras[i].doado, "Sim") == 0) {
+            // Verifica se a obra pertence à área desejada
+            if (strstr(obras[i].codigoCatalogacao, area) != NULL) {
+                printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+                printf("Nome da obra: %s\n", obras[i].nomeObra);
+                printf("Nome do autor: %s\n", obras[i].nomeAutor);
+                printf("Editora: %s\n", obras[i].editora);
+                printf("Número de páginas: %d\n", obras[i].numPaginas);
+                printf("----------------------------\n");
+            }
+        }
+    }
+}
+
+int main() {
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    // Listar obras doadas de cada área
+    listarObrasDoadas(cienciasExatas, NUM_OBRAS, "Exatas");
+    listarObrasDoadas(cienciasHumanas, NUM_OBRAS, "Humanas");
+    listarObrasDoadas(cienciasBiomedicas, NUM_OBRAS, "Biomedicas");
+
+    return 0;
+}
+
           e) Idem ao item d, porém, obras cujos livros sejam comprados e cujo número de páginas se encotre entre 100 e 300.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para realizar a consulta com critérios específicos
+void consultarLivro(struct Obra obras[], int numLivros, const char nomeConsulta[], const char areaConsulta[]) {
+    int encontrado = 0;
+
+    for (int i = 0; i < numLivros; i++) {
+        // Verificar se o livro foi comprado e tem entre 100 e 300 páginas
+        if (strcmp(obras[i].nomeObra, nomeConsulta) == 0 && strcmp(obras[i].doado, "Não") == 0 &&
+            obras[i].numPaginas >= 100 && obras[i].numPaginas <= 300) {
+            printf("Informações sobre o livro:\n");
+            printf("Código de catalogação: %s\n", obras[i].codigoCatalogacao);
+            printf("Doado: %s\n", obras[i].doado);
+            printf("Nome da obra: %s\n", obras[i].nomeObra);
+            printf("Nome do autor: %s\n", obras[i].nomeAutor);
+            printf("Editora: %s\n", obras[i].editora);
+            printf("Número de páginas: %d\n", obras[i].numPaginas);
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Livro não encontrado ou não atende aos critérios.\n");
+    }
+}
+
+int main() {
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    int codigoFinalizador = -1;
+    char nomeConsulta[100];
+    char areaConsulta[20];
+
+    while (1) {
+        printf("\nDigite o nome do livro que deseja consultar (ou -1 para sair): ");
+        scanf("%s", nomeConsulta);
+
+        if (strcmp(nomeConsulta, "-1") == 0) {
+            break; // Código finalizador, encerra o loop
+        }
+
+        printf("Digite a área do livro (Exatas, Humanas, Biomedicas): ");
+        scanf("%s", areaConsulta);
+
+        // Consulta às informações do livro com critérios específicos
+        if (strcmp(areaConsulta, "Exatas") == 0) {
+            consultarLivro(cienciasExatas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else if (strcmp(areaConsulta, "Humanas") == 0) {
+            consultarLivro(cienciasHumanas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else if (strcmp(areaConsulta, "Biomedicas") == 0) {
+            consultarLivro(cienciasBiomedicas, NUM_OBRAS, nomeConsulta, areaConsulta);
+        } else {
+            printf("Área inválida. Tente novamente.\n");
+        }
+    }
+
+    return 0;
+}
+
           f) Elabore um trecho de algoritmo que faça a alteração de um registro; para tal, o usuário fornece o código, a área e as demais informações sobre o livro. Lembre-se de que somente pode ser alterado um livro existente. 
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para realizar a alteração de um livro
+void alterarLivro(struct Obra obras[], int numLivros, const char codigoConsulta[], const char areaConsulta[]) {
+    int encontrado = 0;
+
+    for (int i = 0; i < numLivros; i++) {
+        // Verificar se o livro existe com base no código e área
+        if (strcmp(obras[i].codigoCatalogacao, codigoConsulta) == 0 && strcmp(areaConsulta, "Exatas") == 0) {
+            printf("Digite as novas informações para o livro:\n");
+
+            printf("Código de catalogação: ");
+            scanf("%s", obras[i].codigoCatalogacao);
+
+            printf("Doado (Sim ou Não): ");
+            scanf("%s", obras[i].doado);
+
+            printf("Nome da obra: ");
+            scanf("%s", obras[i].nomeObra);
+
+            printf("Nome do autor: ");
+            scanf("%s", obras[i].nomeAutor);
+
+            printf("Editora: ");
+            scanf("%s", obras[i].editora);
+
+            printf("Número de páginas: ");
+            scanf("%d", &obras[i].numPaginas);
+
+            printf("Livro alterado com sucesso.\n");
+            encontrado = 1;
+            break;
+        } else if (strcmp(obras[i].codigoCatalogacao, codigoConsulta) == 0 && strcmp(areaConsulta, "Humanas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        } else if (strcmp(obras[i].codigoCatalogacao, codigoConsulta) == 0 && strcmp(areaConsulta, "Biomedicas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Livro não encontrado ou não pode ser alterado.\n");
+    }
+}
+
+int main() {
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    char codigoConsulta[20];
+    char areaConsulta[20];
+
+    printf("Digite o código do livro que deseja alterar: ");
+    scanf("%s", codigoConsulta);
+
+    printf("Digite a área do livro (Exatas, Humanas, Biomedicas): ");
+    scanf("%s", areaConsulta);
+
+    // Alteração do livro
+    if (strcmp(areaConsulta, "Exatas") == 0) {
+        alterarLivro(cienciasExatas, NUM_OBRAS, codigoConsulta, areaConsulta);
+    } else if (strcmp(areaConsulta, "Humanas") == 0) {
+        alterarLivro(cienciasHumanas, NUM_OBRAS, codigoConsulta, areaConsulta);
+    } else if (strcmp(areaConsulta, "Biomedicas") == 0) {
+        alterarLivro(cienciasBiomedicas, NUM_OBRAS, codigoConsulta, areaConsulta);
+    } else {
+        printf("Área inválida. Livro não pode ser alterado.\n");
+    }
+
+    return 0;
+}
+
           g) Construa um trecho de algoritmo que efetue a exclusão de algum livro; o usuário fornecerá o código e a área. Lembre-se de que somente pode ser excluído um livro existente.
+#include <stdio.h>
+#include <string.h>
+
+#define NUM_OBRAS 500
+
+// Definição da estrutura para cada obra
+struct Obra {
+    char codigoCatalogacao[20];
+    char doado[5];
+    char nomeObra[100];
+    char nomeAutor[100];
+    char editora[50];
+    int numPaginas;
+};
+
+// Função para realizar a exclusão de um livro
+void excluirLivro(struct Obra obras[], int *numLivros, const char codigoExclusao[], const char areaExclusao[]) {
+    int encontrado = 0;
+
+    for (int i = 0; i < *numLivros; i++) {
+        // Verificar se o livro existe com base no código e na área fornecidos
+        if (strcmp(obras[i].codigoCatalogacao, codigoExclusao) == 0 &&
+            strcmp(areaExclusao, "Exatas") == 0) {
+            // Deslocar todos os livros após o livro a ser excluído para preencher o espaço
+            for (int j = i; j < *numLivros - 1; j++) {
+                obras[j] = obras[j + 1];
+            }
+            (*numLivros)--;
+            encontrado = 1;
+            printf("Livro excluído com sucesso.\n");
+            break;
+        } else if (strcmp(obras[i].codigoCatalogacao, codigoExclusao) == 0 &&
+                   strcmp(areaExclusao, "Humanas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        } else if (strcmp(obras[i].codigoCatalogacao, codigoExclusao) == 0 &&
+                   strcmp(areaExclusao, "Biomedicas") == 0) {
+            // Repetir o mesmo padrão para as outras áreas (Humanas, Biomédicas, etc.)
+            // ...
+            encontrado = 1;
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        printf("Livro não encontrado para exclusão.\n");
+    }
+}
+
+int main() {
+    struct Obra cienciasExatas[NUM_OBRAS];
+    struct Obra cienciasHumanas[NUM_OBRAS];
+    struct Obra cienciasBiomedicas[NUM_OBRAS];
+
+    // Preenchimento dos vetores com informações fictícias (pode ser substituído pelos dados reais)
+    // ...
+
+    int codigoFinalizador = -1;
+    char codigoExclusao[20];
+    char areaExclusao[20];
+    int numLivros = NUM_OBRAS; // Inicializa o número de livros com o total
+
+    while (1) {
+        printf("\nDigite o código do livro que deseja excluir (ou -1 para sair): ");
+        scanf("%s", codigoExclusao);
+
+        if (strcmp(codigoExclusao, "-1") == 0) {
+            break; // Código finalizador, encerra o loop
+        }
+
+        printf("Digite a área do livro a ser excluído (Exatas, Humanas, Biomedicas): ");
+        scanf("%s", areaExclusao);
+
+        // Exclusão do livro com base no código e na área fornecidos
+        if (strcmp(areaExclusao, "Exatas") == 0) {
+            excluirLivro(cienciasExatas, &numLivros, codigoExclusao, areaExclusao);
+        } else if (strcmp(areaExclusao, "Humanas") == 0) {
+            excluirLivro(cienciasHumanas, &numLivros, codigoExclusao, areaExclusao);
+        } else if (strcmp(areaExclusao, "Biomedicas") == 0) {
+            excluirLivro(cienciasBiomedicas, &numLivros, codigoExclusao, areaExclusao);
+        } else {
+            printf("Área inválida. Tente novamente.\n");
+        }
+    }
+
+    return 0;
+}
+
 
 Exercício 16. Para o controle dos veículos que circulam em uma determinada cidade, a Secretaria dos Transportes criou o seguinte registro-padrão:
 
@@ -1713,9 +2160,287 @@ Em que:
 Sabendo que o número máximo de veículos da cidade é de 5.000 unidades e que os valores são precisam ser lidos.
 
           a) Construa um algoritmo que liste todos os proprietários cujos carros são do ano de 1980 ou posterior e que sejam movidos a diesel.
-          b) Escreva um algoritmo que liste todas as placas que comecem com a letraA e terminem com 0, 2, 4 ou 7 e seus respectivos proprietários. (Sugestão: utilize placa como um vetor de caracter)
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_VEICULOS 5000
+
+// Definição da estrutura para cada veículo
+struct Veiculo {
+    char proprietario[100];
+    char combustivel[20];
+    char modelo[50];
+    char cor[20];
+    char numChassi[20];
+    int ano;
+    char placa[10];
+};
+
+int main() {
+    struct Veiculo veiculos[MAX_VEICULOS];
+
+    // Preenchimento dos dados dos veículos (pode ser substituído pelos dados reais)
+    // ...
+
+    int numVeiculos; // Número atual de veículos na cidade
+
+    // Leitura do número de veículos
+    printf("Digite o número de veículos na cidade: ");
+    scanf("%d", &numVeiculos);
+
+    // Leitura dos dados dos veículos
+    for (int i = 0; i < numVeiculos; i++) {
+        printf("\nDigite os dados do veículo %d:\n", i + 1);
+        printf("Proprietário: ");
+        scanf("%s", veiculos[i].proprietario);
+        printf("Combustível (álcool, diesel ou gasolina): ");
+        scanf("%s", veiculos[i].combustivel);
+        printf("Modelo: ");
+        scanf("%s", veiculos[i].modelo);
+        printf("Cor: ");
+        scanf("%s", veiculos[i].cor);
+        printf("Número do chassi: ");
+        scanf("%s", veiculos[i].numChassi);
+        printf("Ano: ");
+        scanf("%d", &veiculos[i].ano);
+        printf("Placa: ");
+        scanf("%s", veiculos[i].placa);
+    }
+
+    // Listagem dos proprietários cujos carros são do ano de 1980 ou posterior e são movidos a diesel
+    printf("\nProprietários cujos carros são do ano de 1980 ou posterior e são movidos a diesel:\n");
+
+    for (int i = 0; i < numVeiculos; i++) {
+        if (veiculos[i].ano >= 1980 && strcmp(veiculos[i].combustivel, "diesel") == 0) {
+            printf("%s\n", veiculos[i].proprietario);
+        }
+    }
+
+    return 0;
+}
+
+   b) Escreva um algoritmo que liste todas as placas que comecem com a letraA e terminem com 0, 2, 4 ou 7 e seus respectivos proprietários. (Sugestão: utilize placa como um vetor de caracter)       
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_VEICULOS 5000
+
+// Definição da estrutura para cada veículo
+struct Veiculo {
+    char proprietario[100];
+    char combustivel[20];
+    char modelo[50];
+    char cor[20];
+    char numChassi[20];
+    int ano;
+    char placa[10];
+};
+
+int main() {
+    struct Veiculo veiculos[MAX_VEICULOS];
+
+    // Preenchimento dos dados dos veículos (pode ser substituído pelos dados reais)
+    // ...
+
+    int numVeiculos; // Número atual de veículos na cidade
+
+    // Leitura do número de veículos
+    printf("Digite o número de veículos na cidade: ");
+    scanf("%d", &numVeiculos);
+
+    // Leitura dos dados dos veículos
+    for (int i = 0; i < numVeiculos; i++) {
+        printf("\nDigite os dados do veículo %d:\n", i + 1);
+        printf("Proprietário: ");
+        scanf("%s", veiculos[i].proprietario);
+        printf("Combustível (álcool, diesel ou gasolina): ");
+        scanf("%s", veiculos[i].combustivel);
+        printf("Modelo: ");
+        scanf("%s", veiculos[i].modelo);
+        printf("Cor: ");
+        scanf("%s", veiculos[i].cor);
+        printf("Número do chassi: ");
+        scanf("%s", veiculos[i].numChassi);
+        printf("Ano: ");
+        scanf("%d", &veiculos[i].ano);
+        printf("Placa: ");
+        scanf("%s", veiculos[i].placa);
+    }
+
+    // Listagem das placas que começam com 'A' e terminam com 0, 2, 4 ou 7, junto com os proprietários
+    printf("\nPlacas que começam com 'A' e terminam com 0, 2, 4 ou 7, junto com os proprietários:\n");
+
+    for (int i = 0; i < numVeiculos; i++) {
+        if (veiculos[i].placa[0] == 'A' &&
+            (veiculos[i].placa[6] == '0' || veiculos[i].placa[6] == '2' || veiculos[i].placa[6] == '4' || veiculos[i].placa[6] == '7')) {
+            printf("Placa: %s, Proprietário: %s\n", veiculos[i].placa, veiculos[i].proprietario);
+        }
+    }
+
+    return 0;
+}
+
+
           c) Elabore um algoritmo que liste o modelo e a cor dos veículos cujas placas possuem como segunda letra uma vogal e cuja soma dos valores númericos fornece um número par.
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_VEICULOS 5000
+
+// Definição da estrutura para cada veículo
+struct Veiculo {
+    char proprietario[100];
+    char combustivel[20];
+    char modelo[50];
+    char cor[20];
+    char numChassi[20];
+    int ano;
+    char placa[10];
+};
+
+// Função para calcular a soma dos valores numéricos em uma placa
+int somaValoresNumericosPlaca(const char placa[]) {
+    int soma = 0;
+    for (int i = 3; i < 7; i++) {
+        soma += placa[i] - '0'; // Converte caractere para inteiro
+    }
+    return soma;
+}
+
+int main() {
+    struct Veiculo veiculos[MAX_VEICULOS];
+
+    // Preenchimento dos dados dos veículos (pode ser substituído pelos dados reais)
+    // ...
+
+    int numVeiculos; // Número atual de veículos na cidade
+
+    // Leitura do número de veículos
+    printf("Digite o número de veículos na cidade: ");
+    scanf("%d", &numVeiculos);
+
+    // Leitura dos dados dos veículos
+    for (int i = 0; i < numVeiculos; i++) {
+        printf("\nDigite os dados do veículo %d:\n", i + 1);
+        printf("Proprietário: ");
+        scanf("%s", veiculos[i].proprietario);
+        printf("Combustível (álcool, diesel ou gasolina): ");
+        scanf("%s", veiculos[i].combustivel);
+        printf("Modelo: ");
+        scanf("%s", veiculos[i].modelo);
+        printf("Cor: ");
+        scanf("%s", veiculos[i].cor);
+        printf("Número do chassi: ");
+        scanf("%s", veiculos[i].numChassi);
+        printf("Ano: ");
+        scanf("%d", &veiculos[i].ano);
+        printf("Placa: ");
+        scanf("%s", veiculos[i].placa);
+    }
+
+    // Listagem do modelo e da cor dos veículos com placas específicas
+    printf("\nModelo e cor dos veículos com placas cuja segunda letra é uma vogal e a soma dos valores numéricos é par:\n");
+
+    for (int i = 0; i < numVeiculos; i++) {
+        char segundaLetraPlaca = veiculos[i].placa[1];
+        int somaValores = somaValoresNumericosPlaca(veiculos[i].placa);
+
+        if ((segundaLetraPlaca == 'A' || segundaLetraPlaca == 'E' || segundaLetraPlaca == 'I' || segundaLetraPlaca == 'O' || segundaLetraPlaca == 'U') &&
+            somaValores % 2 == 0) {
+            printf("Modelo: %s, Cor: %s\n", veiculos[i].modelo, veiculos[i].cor);
+        }
+    }
+
+    return 0;
+}
+
           d) Construa um algoritmo que permita a troca de proprietário com o fornecimento do número do chassi apenas para carros com placas que não possuam nenhum dígito igual a zero
+
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_VEICULOS 5000
+
+// Definição da estrutura para cada veículo
+struct Veiculo {
+    char proprietario[100];
+    char combustivel[20];
+    char modelo[50];
+    char cor[20];
+    char numChassi[20];
+    int ano;
+    char placa[10];
+};
+
+// Função para verificar se a placa contém algum dígito igual a zero
+int placaContemZero(const char placa[]) {
+    for (int i = 3; i < 7; i++) {
+        if (placa[i] == '0') {
+            return 1; // A placa contém pelo menos um dígito igual a zero
+        }
+    }
+    return 0; // A placa não contém dígitos iguais a zero
+}
+
+// Função para realizar a troca de proprietário
+void trocarProprietario(struct Veiculo veiculos[], int numVeiculos, const char numChassi[], const char novoProprietario[]) {
+    for (int i = 0; i < numVeiculos; i++) {
+        if (strcmp(veiculos[i].numChassi, numChassi) == 0 && !placaContemZero(veiculos[i].placa)) {
+            strcpy(veiculos[i].proprietario, novoProprietario);
+            printf("Troca de proprietário realizada com sucesso.\n");
+            return;
+        }
+    }
+    printf("Veículo não encontrado ou placa contém dígito zero.\n");
+}
+
+int main() {
+    struct Veiculo veiculos[MAX_VEICULOS];
+
+    // Preenchimento dos dados dos veículos (pode ser substituído pelos dados reais)
+    // ...
+
+    int numVeiculos; // Número atual de veículos na cidade
+
+    // Leitura do número de veículos
+    printf("Digite o número de veículos na cidade: ");
+    scanf("%d", &numVeiculos);
+
+    // Leitura dos dados dos veículos
+    for (int i = 0; i < numVeiculos; i++) {
+        printf("\nDigite os dados do veículo %d:\n", i + 1);
+        printf("Proprietário: ");
+        scanf("%s", veiculos[i].proprietario);
+        printf("Combustível (álcool, diesel ou gasolina): ");
+        scanf("%s", veiculos[i].combustivel);
+        printf("Modelo: ");
+        scanf("%s", veiculos[i].modelo);
+        printf("Cor: ");
+        scanf("%s", veiculos[i].cor);
+        printf("Número do chassi: ");
+        scanf("%s", veiculos[i].numChassi);
+        printf("Ano: ");
+        scanf("%d", &veiculos[i].ano);
+        printf("Placa: ");
+        scanf("%s", veiculos[i].placa);
+    }
+
+    // Solicitação dos dados para a troca de proprietário
+    char numChassiTroca[20];
+    char novoProprietario[100];
+
+    printf("\nDigite o número do chassi do veículo para a troca de proprietário: ");
+    scanf("%s", numChassiTroca);
+
+    printf("Digite o novo proprietário: ");
+    scanf("%s", novoProprietario);
+
+    // Realiza a troca de proprietário
+    trocarProprietario(veiculos, numVeiculos, numChassiTroca, novoProprietario);
+
+    return 0;
+}
 
 
 
